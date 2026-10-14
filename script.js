@@ -4,7 +4,7 @@ const searchBox = document.getElementById("search");
 const searchBtn = document.getElementById("searchBtn");
 const message = document.getElementById("message");
 const countryCard = document.getElementById("countryCard");
-const country = document.getElementById("countryName");
+const countryName = document.getElementById("countryName");
 const flag = document.getElementById("flag");
 const capital = document.getElementById("capitalName");
 const region = document.getElementById("region");
@@ -21,9 +21,21 @@ async function searchCountry(){
         return;
     }
     try {
-    const response = await fetch('https://api.restcountries.com/countries/v5/codes.alpha_2/CA?pretty=1', 
-    { headers: { 'Authorization': ${apiKey} } });
-    const result = await response.json();
+    //const url = `https://api.restcountries.com/countries/v5/names.common/${encodeURIComponent(country)}`;
+    const response = await fetch(`https://countries.dev/name/${encodeURIComponent(country)}`);
+    if (!response.ok) {
+        throw new Error("Country not found");
+    }
+    const result = await response.json()
+    console.log(result);
+    countryName.innerHTML = result[0].name;
+    capital.innerHTML = result[0].capital;
+    region.innerHTML = result[0].region;
+    subregion.innerHTML = result[0].subregion;
+    population.innerHTML = result[0].population;
+    currency.innerHTML = result[0].currencies[0].name;
+    languages.innerHTML = result[0].languages[0].name;
+    flag.innerHTML = result[0].flag;
     } catch(error) {
 
     }
