@@ -9,25 +9,42 @@
 <body>
 <!--search bar and search btn-->
     <h1>Travel Planner</h1>
-        <div class="container">
+    <div id="input">
         <p>Search for a country to start planning your trip!</p>
         <input type="text" id="search" placeholder="Enter a country">
         <button id="searchBtn">Search</button>
     </div>
 
-<!--Display country info: name, capital etc.-->
-    <p id="message"></p>
-    <div id="countyCard" class="hidden">
-        <h2>Country: <span id="countryName"></span></h2>
-        <h2 id="flag"></h2>
-        <p>Capital: <span id="capitalName"></span></p>
-        <p>Region: <span id="region"></span></p>
-        <p>Subregion: <span id=subregion></span></p>
-        <p>Population: <span id="population"></span></p>
-        <p>Currency: <span id="currency"></span></p>
-        <p>Languages: <span id="languages"></span></p>
-    </div>
+    <div class="container">
+            <!--Display country info: name, capital etc.-->
+        <p id="message"></p>
+        <div id="countryCard" class="hidden">
+            <h2>Country: <span id="countryName"></span></h2>
+            <h2 id="flag"></h2>
+            <p>Capital: <span id="capitalName"></span></p>
+            <p>Region: <span id="region"></span></p>
+            <p>Subregion: <span id=subregion></span></p>
+            <p>Population: <span id="population"></span></p>
+            <p>Currency: <span id="currency"></span></p>
+            <p>Languages: <span id="languages"></span></p>
+        </div>
 
+    <!--Display weather info: temp, feels like etc.-->
+        <div id="weatherCard" class="hidden">
+            <h2>Weather</h2>
+            <p>Temperature: <span id="temp"></span>°C</p>
+            <p>Feels Like: <span id="feelsLike"></span>°C</p>
+            <p>Weather Description: <span id="description"></span></p>
+            <img id="weatherIcon" src="">
+        </div>
+
+    <!--Tourist Attractions-->
+            <div id="touristAttractions">
+            <h2>Tourist Attractions</h2>
+            <ul id="attractions">
+            </ul> 
+    </div>
+</div>
     <script src="script.js"></script>
 </body>
 </html>

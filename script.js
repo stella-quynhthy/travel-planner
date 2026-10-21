@@ -1,5 +1,6 @@
 //Varibles
-const apiKey = "rc_live_cfd4d1305e4a47ddbde93be69bc81312"
+const weatherApiKey = "edb38b2af3a0eef8f2645a44050d7b75";
+const attApiKey = "5ae2e3f221c38a28845f05b644538cc805c2abb1238c713f3273494d"
 const searchBox = document.getElementById("search");
 const searchBtn = document.getElementById("searchBtn");
 const message = document.getElementById("message");
@@ -12,8 +13,15 @@ const subregion = document.getElementById("subregion");
 const population = document.getElementById("population");
 const currency = document.getElementById("currency");
 const languages = document.getElementById("languages");
+const temp = document.getElementById("temp");
+const feelsLike = document.getElementById("feelsLike");
+const weatherDescription = document.getElementById("description");
+const weatherIcon = document.getElementById("weatherIcon");
+
+
 
 //request info from API (async func)
+//Country info
 async function searchCountry(){
     const country = searchBox.value.trim();
     if (country === "") {
@@ -41,5 +49,45 @@ async function searchCountry(){
     }
 }
 
+//request info from API (async func)
+//Get weather for country
+async function getWeather() {
+    try {
+    const loc = searchBox.value.trim();
+    const weatherResponse = await fetch(`https://api.weatherstack.com/current?access_key=${weatherApiKey}&query=${loc}`);
+    if (!weatherResponse.ok) {
+        throw new Error("Unable to display weather");
+    }
+    const weatherResult = await weatherResponse.json();
+    console.log(weatherResult);
+    temp.textContent = weatherResult.current.temperature;
+    feelsLike.innerHTML = weatherResult.current.feelslike;
+    weatherDescription.innerHTML = weatherResult.current.weather_descriptions[0];
+    weatherIcon.src = weatherResult.current.weather_icons[0];
+    } catch(error){
 
-searchBtn.addEventListener("click", searchCountry);
+    }
+}
+
+//Get attractions
+/*
+async function getAttraction(){
+    try {
+        const attResponse = await fetch(`http://api.opentripmap.com/0.1/ru/places/xid/Q372040?apikey=${attApiKey}`)
+        if (!attResponse.ok) {
+            throw new Error ("Unable to get attraction");
+        }
+        const attResult = await attResponse.json();
+        console.log(attResult);
+    } catch(error){
+
+    }
+}
+*/
+
+//search button
+searchBtn.addEventListener("click", () => {
+    searchCountry();
+    getWeather();
+    //getAttraction();
+});
