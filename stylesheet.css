@@ -19,7 +19,7 @@ h1 {
     margin: 10px;
 }
 
-#countryCard, #weatherCard {
+#countryCard, #weatherCard, #touristAttractions {
     border: 2px solid black;
     padding: 10px;
     background-color: rgb(225, 229, 236);
